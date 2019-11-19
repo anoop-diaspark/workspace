@@ -1,0 +1,137 @@
+
+<button mat-raised-button  (click)="onCreate()">
+    <mat-icon>add</mat-icon>Create
+    </button>
+<div class="container">
+    <tbody>
+        <tr>
+            <td style="width: 500px;  border: 1px solid black;">
+                <angular2-multiselect [data]="dropdownList" [(ngModel)]="selectedItems1"
+                    (onSelect)="onItemSelect1($event)" (onDeSelect)="OnItemDeSelect2($event)"
+                    (onSelectAll)="onSelectAll1($event)" (onDeSelectAll)="onDeSelectAll2($event)"
+                    [settings]="dropdownSettings1">
+                </angular2-multiselect>
+            </td>&nbsp;
+            <td style="width: 500px;  border: 1px solid black;">
+                <angular2-multiselect [data]="dropdownList2" [(ngModel)]="selectedItems2" [settings]="dropdownSettings2"
+                    (onSelect)="onItemSelect1($event)" (onDeSelect)="OnItemDeSelect2($event)"
+                    (onSelectAll)="onSelectAll1($event)" (onDeSelectAll)="onDeSelectAll2($event)"
+                    [settings]="dropdownSettings1">
+                </angular2-multiselect>
+            </td>
+        </tr>
+    </tbody>
+</div>
+
+<div class="card-footer">
+    <div class="col-lg-12 table-responsive">
+
+        <!-- <thead>
+                <tr>
+                    <th>Country </th>
+                    <th>Date of Match</th>
+                    <th>Format</th>
+                </tr>
+            </thead> -->
+        <!-- <tbody>
+            
+                <input type="hidden" [(ngModel)]="checkboxmark">
+                <tr  *ngFor="let data of newArray| filter:checkboxmark">
+                    <td *ngIf = "!flag">{{data.countryName}}</td>
+                    <td *ngIf = "!flag">{{data.matchDate}}</td>
+                    <td *ngIf = "!flag">{{data.matchType}}</td>
+                </tr>
+            
+          
+                    <input type="hidden" [(ngModel)]="checkboxmark">
+                    <tr *ngFor="let data of newArray1| filter:checkboxmark">
+                        <td  *ngIf = "flag">{{data.countryName}}</td>
+                        <td  *ngIf = "flag">{{data.matchDate}}</td>
+                        <td  *ngIf = "flag">{{data.matchType}}</td>
+                    </tr>
+                
+            </tbody> -->
+        <mat-table *ngIf="!flag" [dataSource]="dataSource1" matSort>
+              <!-- id Column -->
+              <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> country id </mat-header-cell>
+                    <mat-cell *matCellDef="let element"  > {{element.id}} </mat-cell>
+                </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="countryName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> countryName </mat-header-cell>
+                <mat-cell *matCellDef="let element"  > {{element.countryName}} </mat-cell>
+            </ng-container>
+            <!-- match type -->
+            <ng-container matColumnDef="matchType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> matchType </mat-header-cell>
+                <mat-cell *matCellDef="let element"  > {{element.matchType}} </mat-cell>
+            </ng-container>
+            <!-- match date -->
+            <ng-container matColumnDef="matchDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> matchDate </mat-header-cell>
+                <mat-cell *matCellDef="let element"  > {{element.matchDate}} </mat-cell>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef>actions</mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-button color="primary" mat-icon-button (click)="onEdit(row)">
+                        <mat-icon>edit</mat-icon>
+                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button mat-icon-button color="warn" (click)="delete(row)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"> </mat-row>
+        </mat-table>
+
+
+        <mat-table *ngIf="flag" [dataSource]="dataSource2" matSort>
+              <!-- id Column -->
+              <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> country id </mat-header-cell>
+                    <mat-cell *matCellDef="let element"  > {{element.id}} </mat-cell>
+                </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="countryName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> countryName </mat-header-cell>
+                <mat-cell *matCellDef="let element"  > {{element.countryName}} </mat-cell>
+            </ng-container>
+            <!-- match type -->
+            <ng-container matColumnDef="matchType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> matchType </mat-header-cell>
+                <mat-cell *matCellDef="let element"  > {{element.matchType}} </mat-cell>
+            </ng-container>
+            <!-- match date -->
+            <ng-container matColumnDef="matchDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> matchDate </mat-header-cell>
+                <mat-cell *matCellDef="let element"  > {{element.matchDate}} </mat-cell>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                <mat-cell *matCellDef="let row">
+                    <button mat-button color="primary" mat-icon-button (click)="onEdit(row)">
+                        <mat-icon>edit</mat-icon>
+                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button mat-icon-button color="warn" (click)="delete(row)">
+                        <mat-icon>delete_outline</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"> </mat-row>
+        </mat-table>
+        <mat-paginator *ngIf="res1 || res2" [pageSizeOptions]="[1,5,10,15,20,30,50]" (page)="getServerData($event)"
+            showFirstLastButtons></mat-paginator>
+    </div>
+</div>

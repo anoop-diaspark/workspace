@@ -1,0 +1,35 @@
+
+
+<div class="row custom-wrapper">
+
+    </div>
+<div class="container">
+    <h3>Register</h3>
+    <form [formGroup]="registerForm">
+        <label>Country</label>
+        <div title="Please select the country that the customer will primarily be served from" class="form-group ">
+            <select (change)="changeCountry($event.target.value)" formControlName="countryName" class="form-control">
+                <option value="" disabled selected>Select Country</option>
+                <option *ngFor="let count of countryList">{{count.name}} </option>
+            </select>
+        </div>
+
+
+        <label>City</label>
+        <div title="Please select the city that the customer is primarily to be served from." class="form-group">
+            <select formControlName="stateName" class="form-control">
+                <option value="" disabled selected>Select State</option>
+                <option *ngFor="let city of cities" [value]=city> {{city}} </option>
+            </select>
+        </div>
+
+        <label>Code</label>
+        <div title="Please select the state code that the customer is primarily to be served from." class="form-group">
+            <select formControlName="countryCode" class="form-control">
+                <option value='' disabled selected>Select Country</option>
+                <option *ngFor="let code of codes" [value]=code>{{code}} </option>
+            </select>
+        </div>
+        <button type="button" class="btn btn-secondary col-4" (click)="onSubmit()">Submit</button>
+    </form>
+</div>

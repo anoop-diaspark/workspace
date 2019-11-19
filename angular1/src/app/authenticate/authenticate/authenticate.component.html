@@ -1,0 +1,24 @@
+
+
+<br>
+<form [formGroup]="auth" class="normal-form"  (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="300px">
+      <mat-grid-tile>
+        <div class="controles-container">
+          
+          <mat-form-field>
+            <input style="color:blueviolet" formControlName="userName" matInput placeholder="userName">
+       
+          </mat-form-field>
+          <br>
+          <mat-form-field>
+            <input style="color:blueviolet" formControlName="password" matInput placeholder="password">
+         
+          </mat-form-field>
+          <br>
+          <button mat-raised-button color="primary" type="submit">Submit</button>
+        </div>
+      </mat-grid-tile>
+    
+    </mat-grid-list>
+  </form>

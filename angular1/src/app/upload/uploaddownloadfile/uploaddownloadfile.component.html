@@ -1,0 +1,13 @@
+<div class="form-group">
+    <label for="file">Choose File</label>
+    <input type="file"
+           id="file"
+           (change)="handleFileInput($event.target.files)">
+</div>
+<br>
+<div>
+    <button mat-raised-button color="warn" (click)="uploadFileToActivity()">Submit file</button>
+</div>
+<div>
+<input type="button" (click)="download()" value="Download "/>
+</div>
